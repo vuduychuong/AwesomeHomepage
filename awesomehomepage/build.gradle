@@ -8,14 +8,13 @@ buildscript {
   }
 }
 
-
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
 ext {
   bintrayRepo = 'maven'
-  bintrayName = 'awesomehomepage'
+  bintrayName = 'awesome-homepage'
 
   publishedGroupId = 'com.chuongvd.support'
   libraryName = 'awesomehomepage'
@@ -26,7 +25,7 @@ ext {
   siteUrl = 'https://github.com/vuduychuong/AwesomeHomepage'
   gitUrl = 'https://github.com/vuduychuong/AwesomeHomepage.git'
 
-  libraryVersion = '0.1.3'
+  libraryVersion = '0.1.10'
 
   developerId = 'chuongvd'
   developerName = 'Vu Duy Chuong'
@@ -40,6 +39,8 @@ ext {
 
 def versions = [:]
 versions.support = "27.1.1"
+versions.constraint_layout = "1.1.2"
+versions.bottom_navigation = "2.1.0"
 versions.target
 
 def build_versions = [:]
@@ -84,7 +85,11 @@ android {
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+  //noinspection GradleCompatible
   implementation "com.android.support:appcompat-v7:$versions.support"
+  implementation "com.android.support.constraint:constraint-layout:$versions.constraint_layout"
+  implementation "com.aurelhubert:ahbottomnavigation:$versions.bottom_navigation"
+
   testImplementation 'junit:junit:4.12'
   androidTestImplementation 'com.android.support.test:runner:1.0.2'
   androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
