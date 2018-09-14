@@ -1,6 +1,7 @@
 package com.chuongvd.awesomehomepage.common;
 
 import android.arch.lifecycle.AndroidViewModel;
+import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
@@ -16,6 +17,8 @@ public abstract class BaseDataBindingFragment<B extends ViewDataBinding, V exten
     public B mBinding;
 
     protected V mViewModel;
+
+    public abstract Context context();
 
     public abstract int getContentViewLayoutId();
 

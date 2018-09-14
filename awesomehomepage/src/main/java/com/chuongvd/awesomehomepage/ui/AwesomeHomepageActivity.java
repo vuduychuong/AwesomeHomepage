@@ -34,12 +34,6 @@ public abstract class AwesomeHomepageActivity
     public void initData() {
         binding = (ActivityHomeBinding) mBinding;
         setEnableDrawer(isEnableDrawer());
-        //
-        //        AwesomeHomepageFragment fragment = new AwesomeHomepageFragment();
-        //        getSupportFragmentManager().beginTransaction()
-        //                .add(R.id.container, fragment, AwesomeHomepageFragment.class.getName())
-        //                .commit();
-        //        binding.drawerNavigation
     }
 
     protected abstract int getNavigationMenu();
