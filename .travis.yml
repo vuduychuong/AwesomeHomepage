@@ -3,6 +3,10 @@ android:
   components:
     - build-tools-27.0.3
     - android-27
+script:
+  # Build apk
+  - chmod a+x ./gradlew
+  - ./gradlew assembleDebug
 cache:
   directories:
     - $HOME/.gradle/caches/
