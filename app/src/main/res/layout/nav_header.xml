@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/view_container"
-    android:layout_width="match_parent"
-    android:layout_height="160dp"
-    android:background="@color/colorAccent"
-    android:orientation="vertical"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
     >
-    <ImageView
-        android:id="@+id/img_profile"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:paddingTop="16dp"
-        app:srcCompat="@android:drawable/sym_def_app_icon"
-        />
+    <data>
 
-</LinearLayout>
+    </data>
+    <LinearLayout
+        android:id="@+id/view_container"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@color/colorAccent"
+        android:orientation="vertical"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        >
+        <ImageView
+            android:id="@+id/img_profile"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:paddingTop="16dp"
+            app:srcCompat="@android:drawable/sym_def_app_icon"
+            />
+    </LinearLayout>
+</layout>

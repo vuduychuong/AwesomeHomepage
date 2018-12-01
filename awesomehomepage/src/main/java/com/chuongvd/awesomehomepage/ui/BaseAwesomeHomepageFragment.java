@@ -14,6 +14,7 @@ import com.chuongvd.awesomehomepage.common.BaseDataBindingFragment;
 import com.chuongvd.awesomehomepage.databinding.FragmentAwesomeHomepageBinding;
 import com.chuongvd.awesomehomepage.viewmodel.AwesomeHomepageViewModel;
 import com.chuongvd.awesomehomepage.widget.viewpager.CustomBottomNavigation;
+import com.chuongvd.awesomehomepage.widget.viewpager.ItemFragment;
 import com.chuongvd.awesomehomepage.widget.viewpager.ItemNavigationFragment;
 import com.chuongvd.awesomehomepage.widget.viewpager.NavigationSupportPagerAdapter;
 
@@ -22,14 +23,16 @@ import com.chuongvd.awesomehomepage.widget.viewpager.NavigationSupportPagerAdapt
  *
  * @author Chuongvd
  */
-public abstract class BaseAwesomeHomepageFragment
+public abstract class BaseAwesomeHomepageFragment<ITEM_FRAGMENT extends ItemNavigationFragment>
         extends BaseDataBindingFragment<ViewDataBinding, AwesomeHomepageViewModel>
         implements AHBottomNavigation.OnTabSelectedListener {
     private static final String ACTION_CHANGE_BADGE = "action_change_badge";
     private static final String BADGE_POSITION = "badge_position";
     private static final String BADGE_VALUE = "badge_value";
 
-    private NavigationSupportPagerAdapter<ItemNavigationFragment> mPagerAdapter;
+    protected CustomBottomNavigation mCustomBottomNavigation;
+
+    private NavigationSupportPagerAdapter<ITEM_FRAGMENT> mPagerAdapter;
     private ObservableInt itemSelected = new ObservableInt();
     private BroadcastReceiver mReceiver;
     private IntentFilter mIntentFilter;
@@ -42,7 +45,7 @@ public abstract class BaseAwesomeHomepageFragment
         LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
     }
 
-    public abstract void initAdapter(NavigationSupportPagerAdapter adapter);
+    public abstract void initAdapter(NavigationSupportPagerAdapter<ITEM_FRAGMENT> adapter);
 
     @Override
     public int getContentViewLayoutId() {
@@ -69,8 +72,7 @@ public abstract class BaseAwesomeHomepageFragment
                 int position = intent.getIntExtra(BADGE_POSITION, -1);
                 String value = intent.getStringExtra(BADGE_VALUE);
                 if (position == -1
-                        || position > binding.bottomNavigation.getItemsCount()
-                        || TextUtils.isEmpty(value)) {
+                        || position > binding.bottomNavigation.getItemsCount()) {
                     return;
                 }
                 binding.bottomNavigation.setNotification(value, position);
@@ -93,6 +95,7 @@ public abstract class BaseAwesomeHomepageFragment
     }
 
     protected void stylingBottomNavigation(CustomBottomNavigation bottomNavigation) {
+        mCustomBottomNavigation = bottomNavigation;
         /*
         Modifier if you need
          */
@@ -110,7 +113,7 @@ public abstract class BaseAwesomeHomepageFragment
         return true;
     }
 
-    public NavigationSupportPagerAdapter<ItemNavigationFragment> getPagerAdapter() {
+    public NavigationSupportPagerAdapter<ITEM_FRAGMENT> getPagerAdapter() {
         return mPagerAdapter;
     }
 

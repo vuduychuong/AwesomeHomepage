@@ -1,6 +1,7 @@
 package com.chuongvd.awesomehomepage.ui;
 
 import android.content.res.Resources;
+import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -8,7 +9,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
-import android.view.View;
 import com.chuongvd.awesomehomepage.R;
 import com.chuongvd.awesomehomepage.common.BaseDataBindingActivity;
 import com.chuongvd.awesomehomepage.databinding.ActivityHomeBinding;
@@ -42,13 +42,17 @@ public abstract class AwesomeHomepageActivity
         //        binding.drawerNavigation
     }
 
-    protected abstract int getNavigationMenu();
+    protected int getNavigationMenu() {
+        return 0;
+    }
 
-    protected abstract int getNavigationHeader();
+    protected int getNavigationHeader() {
+        return 0;
+    }
 
     protected abstract boolean isEnableDrawer();
 
-    protected void stylingHeaderView(View headerView) {
+    protected void stylingHeaderView(ViewDataBinding headerView) {
         // TODO: 9/2/18
     }
 
@@ -71,11 +75,20 @@ public abstract class AwesomeHomepageActivity
     }
 
     private void inflateNavigationMenu() {
-        try {
-            binding.drawerNavigation.inflateHeaderView(getNavigationHeader());
-            stylingHeaderView(binding.drawerNavigation.getHeaderView(0));
-        } catch (Resources.NotFoundException e) {
-            Log.w("", e);
+        if (getNavigationHeader() != 0) {
+            try {
+                ViewDataBinding headerBinding =
+                        DataBindingUtil.inflate(getLayoutInflater(), getNavigationHeader(), null,
+                                false);
+                binding.drawerNavigation.addHeaderView(headerBinding.getRoot());
+                stylingHeaderView(headerBinding);
+            } catch (Resources.NotFoundException e) {
+                Log.w("", e);
+            }
+        }
+        if (getNavigationMenu() == 0) {
+            throw new UnsupportedOperationException(
+                    "You need to implement and set resource for getNavigationMenu() if you set enableDrawer");
         }
         try {
             binding.drawerNavigation.inflateMenu(getNavigationMenu());

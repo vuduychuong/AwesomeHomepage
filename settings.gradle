@@ -1,1 +1,2 @@
 include ':app', ':awesomehomepage'
+project(':awesomehomepage').projectDir=new   File('awesomehomepage')

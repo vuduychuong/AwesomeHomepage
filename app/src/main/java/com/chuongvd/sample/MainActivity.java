@@ -1,15 +1,15 @@
 package com.chuongvd.sample;
 
+import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
 import com.chuongvd.awesomehomepage.ui.AwesomeHomepageActivity;
 import com.chuongvd.awesomehomepage.ui.BaseAwesomeHomepageFragment;
+import com.chuongvd.sample.databinding.NavHeaderBinding;
 
 public class MainActivity extends AwesomeHomepageActivity {
 
@@ -23,8 +23,8 @@ public class MainActivity extends AwesomeHomepageActivity {
     }
 
     @Override
-    protected int getNavigationMenu() {
-        return R.menu.nav_menu;
+    protected boolean isEnableDrawer() {
+        return true;
     }
 
     @Override
@@ -33,8 +33,8 @@ public class MainActivity extends AwesomeHomepageActivity {
     }
 
     @Override
-    protected boolean isEnableDrawer() {
-        return false;
+    protected int getNavigationMenu() {
+        return R.menu.nav_menu;
     }
 
     @Override
@@ -43,10 +43,12 @@ public class MainActivity extends AwesomeHomepageActivity {
     }
 
     @Override
-    protected void stylingHeaderView(View headerView) {
+    protected void stylingHeaderView(ViewDataBinding headerView) {
         super.stylingHeaderView(headerView);
-        ImageView imageView = headerView.findViewById(R.id.img_profile);
-        imageView.setImageResource(R.drawable.ic_launcher_foreground);
+        ((NavHeaderBinding) headerView).imgProfile.setImageResource(
+                R.drawable.ic_launcher_foreground);
+        //        ImageView imageView = headerView.findViewById(R.id.img_profile);
+        //        imageView.setImageResource(R.drawable.ic_launcher_foreground);
     }
 
     @Override

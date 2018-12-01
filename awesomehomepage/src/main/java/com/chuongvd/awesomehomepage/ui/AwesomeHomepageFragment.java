@@ -1,5 +1,6 @@
 package com.chuongvd.awesomehomepage.ui;
 
+import com.chuongvd.awesomehomepage.widget.viewpager.ItemNavigationFragment;
 import com.chuongvd.awesomehomepage.widget.viewpager.NavigationSupportPagerAdapter;
 
 /**
@@ -7,10 +8,11 @@ import com.chuongvd.awesomehomepage.widget.viewpager.NavigationSupportPagerAdapt
  *
  * @author Chuongvd
  */
-public class AwesomeHomepageFragment extends BaseAwesomeHomepageFragment {
+public class AwesomeHomepageFragment<ITEM_FRAGMENT extends ItemNavigationFragment>
+        extends BaseAwesomeHomepageFragment<ITEM_FRAGMENT> {
 
     @Override
-    public void initAdapter(NavigationSupportPagerAdapter adapter) {
+    public void initAdapter(NavigationSupportPagerAdapter<ITEM_FRAGMENT> adapter) {
 
     }
 }
