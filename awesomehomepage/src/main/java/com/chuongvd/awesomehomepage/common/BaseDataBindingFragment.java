@@ -13,18 +13,17 @@ import android.view.ViewGroup;
 public abstract class BaseDataBindingFragment<B extends ViewDataBinding, V extends AndroidViewModel>
         extends Fragment {
 
-    public B mBinding;
+    protected B mBinding;
 
     protected V mViewModel;
 
-    public abstract int getContentViewLayoutId();
+    protected abstract int getContentViewLayoutId();
+
+    protected abstract void initListeners();
 
     protected abstract void initData();
 
     protected abstract void subscribeToViewModel();
-
-    //check is first show fragment
-    public boolean isFirstLoad = true;
 
     @Nullable
     @Override
